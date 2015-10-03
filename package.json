@@ -9,6 +9,10 @@
   "bin": {
     "img2lcd": "./bin/tlcd"
   },
+  "repository" : { 
+    "type" : "git", 
+    "url" : "https://github.com/npm/npm.git"
+  },
   "maintainers": [
     {
       "name": "jayot",
