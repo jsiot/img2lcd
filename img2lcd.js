@@ -145,24 +145,25 @@ Img2Lcd.prototype.convert = function(filename, cb) {
          });    
        break;
        
-       case 'image/bmp':
+       default:
+
          new Jimp(filename, function(err, image){
          	 var uname = "krambil";
          	 var hashname = crypto.createHash('md5').update(uname).digest('hex')+'.png';
          	 var tmppath = path.join(os.tmpdir(), hashname);
-             
+           
+           if(!err){  
              image.write(tmppath, function(err, status){
                 if(err) return cb(err, null);
                 pngtolcd(tmppath, function(err, buffer) {
-			      err ? cb(err, null) : cb(null, hex2hex(buffer.toString('hex')).join(','));
+			            err ? cb(err, null) : cb(null, hex2hex(buffer.toString('hex')).join(','));
                 });	
              });
+            } else {
+              cb(err,null);
+            }
          })
-
-       break;
-
-       default:
-         console.log('not implemented yet');
+         
        break;
    }
 }
