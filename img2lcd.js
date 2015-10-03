@@ -88,48 +88,36 @@ function tolcd(imgBuffer) {
     var unpackedBuffer = [];
     var depth = 4;
 
-    // create a new buffer that will be filled with pixel bytes (8 bits per) and then returned
     var buffer = new Buffer((width * height) / 8);
     buffer.fill(0x00);
     
     var pixelVal;
 
-    // filter pixels to create monochrome image data
     for (var i = 0; i < pixelsLen; i += depth) {
-      // just take the red value
       pixelVal = pixels[i + 1] = pixels[i + 2] = pixels[i];
 
-        // do threshold for determining on and off pixel vals
         if (pixelVal > threshold) {
           pixelVal = 1;
         } else {
           pixelVal = 0;
         }
 
-      // push to unpacked buffer list
       unpackedBuffer[i/depth] = pixelVal;
     }
 
-    // time to pack the buffer
     for (var i = 0; i < unpackedBuffer.length; i++) {
-      // math
       var x = Math.floor(i % width);
       var y = Math.floor(i / width);
 
-      // create a new byte, set up page position
       var byte = 0,
           page = Math.floor(y / 8),
           pageShift = 0x01 << (y - 8 * page);
 
-      // is the first page? Just assign byte pos to x value, otherwise add rows to it too
       (page === 0) ? byte = x : byte = x + width * page; 
       
       if (unpackedBuffer[i] === 0) {
-        // 'off' pixel
-        buffer[byte] &= ~pageShift;
-        
+        buffer[byte] &= ~pageShift;        
       } else {
-        // 'on' pixel
         buffer[byte] |= pageShift;
       }
     }
@@ -165,10 +153,9 @@ Img2Lcd.prototype.convert = function(filename, cb) {
              
              image.write(tmppath, function(err, status){
                 if(err) return cb(err, null);
-             	console.log(tmppath);
-                 pngtolcd(tmppath, function(err, buffer) {
-			       err ? cb(err, null) : cb(null, hex2hex(buffer.toString('hex')).join(','));
-                 });	
+                pngtolcd(tmppath, function(err, buffer) {
+			      err ? cb(err, null) : cb(null, hex2hex(buffer.toString('hex')).join(','));
+                });	
              });
          })
 
