@@ -28,6 +28,7 @@ Currently supported image format input
 
 - PNG
 - BMP
+- JPG
 
 ---
 
