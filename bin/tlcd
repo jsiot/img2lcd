@@ -1,0 +1,10 @@
+#!/usr/bin/env node
+'use strict';
+
+var img2lcd = require('../img2lcd.js');
+
+img2lcd.convert(process.argv[2], function(err, hex){
+    if(!err) {
+      console.log(hex);
+    }
+})
