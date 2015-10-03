@@ -1,12 +1,18 @@
 #Image To LCD
 
-Convert images to 2 Bytes Hex (0xxx) for display on lCD.
+Convert images to 2 Bytes Hex (0xxx) for LCD display purpose.
+
+##Usage
+
+```
+$ img2lcd <input.png or input.bmp>
+```
 
 ##Image types 
+Currently supported image format input  
 
 - PNG
 - BMP
-- JPG
 
 ---
 
