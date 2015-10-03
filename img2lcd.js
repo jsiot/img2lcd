@@ -163,10 +163,12 @@ Img2Lcd.prototype.convert = function(filename, cb) {
          	 var hashname = crypto.createHash('md5').update(uname).digest('hex')+'.png';
          	 var tmppath = path.join(os.tmpdir(), hashname);
              
-             image.write(tmppath);
-         	 
-         	 pngtolcd(tmppath, function(err, buffer) {
-			     err ? cb(err, null) : cb(null, hex2hex(buffer.toString('hex')).join(','));
+             image.write(tmppath, function(err, status){
+                if(err) return cb(err, null);
+             	console.log(tmppath);
+                 pngtolcd(tmppath, function(err, buffer) {
+			       err ? cb(err, null) : cb(null, hex2hex(buffer.toString('hex')).join(','));
+                 });	
              });
          })
 
