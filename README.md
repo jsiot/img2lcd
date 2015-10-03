@@ -4,11 +4,26 @@ Convert images to 2 Bytes Hex (0xxx) for LCD display purpose.
 
 ##Usage
 
+CLI
+
 ```
 $ img2lcd <input.png or input.bmp>
 ```
 
+Library
+
+```
+var img2lcd = require('img2lcd');
+
+img2lcd.convert('./test/images/robot.png', function(err, hex){
+    if(!err) {
+      console.log(hex);
+    }
+})
+```
+
 ##Image types 
+
 Currently supported image format input  
 
 - PNG
