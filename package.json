@@ -2,9 +2,19 @@
   "name": "img2lcd",
   "version": "1.0.0",
   "description": "Convert image to 2 bytes hex for LCD",
+  "main": "./img2lcd",
   "scripts": {
     "test": "node test/test.js"
   },
+  "bin": {
+    "img2lcd": "./bin/tlcd"
+  },
+  "maintainers": [
+    {
+      "name": "jayot",
+      "email": "jsdaniot@gmail.com"
+    }
+  ],
   "keywords": [
     "bmp",
     "png",
@@ -15,10 +25,10 @@
     "4884",
     "display"
   ],
-  "author": "Equan Pr. <equan.p@gmail.com>",
   "license": "MIT",
   "dependencies": {
-    "bmp-js": "0.0.1",
-    "pngparse": "^2.0.1"
+    "pngparse": "^2.0.1",
+    "mime": "~1.3.4",
+    "jimp": "~0.2.7"
   }
 }
